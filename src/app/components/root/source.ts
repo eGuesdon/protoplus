@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./styles.css']
 })
 export class RootComponent {
+  
   welcomeMsg : string = 'Bienvenu sur Proto';
-  welcomeMsgPlus : string = '+' ; 
+  welcomeMsgPlus : string = '+' ;
+
 }
