@@ -24,15 +24,30 @@ export class RootComponent {
 
     // Create a submenu as the 2nd level menu
     var submenu : nw.Menu = new nw.Menu();
-    submenu.append(new nw.MenuItem({ label: 'Eric' }));
-    submenu.append(new nw.MenuItem({ label: 'Corinne' }));
-    submenu.append(new nw.MenuItem({ type: 'Separator' }));
-    submenu.append(new nw.MenuItem({ label: 'Ugo' }));
-    submenu.append(new nw.MenuItem({ label: 'Noelle' }));
+    
+    var ssubmenu : nw.Menu = new nw.Menu();
+    ssubmenu.append(new nw.MenuItem({ label: 'Noelle' }));
+    ssubmenu.append(new nw.MenuItem({ label: 'Ugo' }));
+
+    submenu.append(new nw.MenuItem({ 
+        label: 'Famille Parlange',
+        submenu:ssubmenu
+    }));
+
+    submenu.append(new nw.MenuItem({ type: 'separator' }));
+    
+    var sssubmenu : nw.Menu = new nw.Menu();
+    sssubmenu.append(new nw.MenuItem({ label: 'Corinne' }));
+    sssubmenu.append(new nw.MenuItem({ label: 'Eric' }));
+
+    submenu.append(new nw.MenuItem({ 
+        label: 'Famille Guesdon',
+        submenu:sssubmenu
+    }));
 
     // Create and append the 1st level menu to the menubar
     this.menu.append(new nw.MenuItem({
-        label: 'Famille',
+        label: 'Famille(s)',
         submenu: submenu
       }));
     nw.Window.get().menu = this.menu;
