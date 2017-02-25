@@ -1,7 +1,6 @@
 /// <reference path="../../../../typings/globals/nw.js/index.d.ts" />
 
 import { Component } from '@angular/core';
-// declare let nw ;
 
 @Component({
   selector: 'body',
@@ -10,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class RootComponent {
   public welcomeMsg : string = 'Bienvenu sur Proto';
-  public welcomeMsgPlus : string = 'Plus' ;
+  public welcomeMsgPlus : string = '+' ;
   private _menu : nw.Menu;
 
   constructor() {
@@ -19,8 +18,8 @@ export class RootComponent {
 
   public ngOnInit () : void {
     // Create an empty menubar
-    this.menu = new nw.Menu({type: 'menubar'});
-    this.menu.createMacBuiltin("Proto+", { hideEdit : true } )
+    this.menu = new nw.Menu({type:"menubar"});
+    this.menu.createMacBuiltin("Proto+", { hideWindow : true , hideEdit : true } ) ;
 
     // Create a submenu as the 2nd level menu
     var submenu : nw.Menu = new nw.Menu();
@@ -35,6 +34,9 @@ export class RootComponent {
         submenu: submenu
       }));
     nw.Window.get().menu = this.menu;
+    nw.Window.get().moveBy(0, -200);
+    nw.Window.get().showDevTools();
+    console.log(nw.Window.get()) ;
   }
   
   // ==== Getter / Setter ==== \\
