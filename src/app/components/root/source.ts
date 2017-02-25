@@ -52,9 +52,9 @@ export class RootComponent {
         label: 'Famille(s)',
         submenu: submenu
       }));
-    nw.Window.get().menu = this.menu;
-    nw.Window.get().moveBy(0, -200);
-    nw.Window.get().showDevTools();
+    nw.Window.get().menu = this.menu ;
+    nw.Window.get().moveBy(0, -200) ;
+    nw.Window.get().showDevTools() ;
   }
   
   // ==== Getter / Setter ==== \\
