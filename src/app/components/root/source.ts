@@ -1,7 +1,7 @@
 /// <reference path="../../../../typings/globals/nw.js/index.d.ts" />
 
 import { Component } from '@angular/core';
-declare let nw ;
+// declare let nw ;
 
 @Component({
   selector: 'body',
@@ -10,7 +10,7 @@ declare let nw ;
 })
 export class RootComponent {
   public welcomeMsg : string = 'Bienvenu sur Proto';
-  public welcomeMsgPlus : string = '+' ;
+  public welcomeMsgPlus : string = 'Plus' ;
   private _menu : nw.Menu;
 
   constructor() {
@@ -18,22 +18,29 @@ export class RootComponent {
   }
 
   public ngOnInit () : void {
-    this.menu = new nw.Menu( { type : 'menubar' } );
-  }
+    // Create an empty menubar
+    this.menu = new nw.Menu({type: 'menubar'});
+    this.menu.createMacBuiltin("Proto+", { hideEdit : true } )
 
-  private setSubMenu () : void {
-    this.menu.append(new nw.MenuItem( { label : 'Item A' } ) ) ;
-    this.menu.append(new nw.MenuItem( { label : 'Item B' } ) ) ;
-    this.menu.append(new nw.MenuItem( { label : 'Separator' } ) ) ;
-    this.menu.append(new nw.MenuItem( { label : 'Item C' } ) ) ;
-  }
+    // Create a submenu as the 2nd level menu
+    var submenu : nw.Menu = new nw.Menu();
+    submenu.append(new nw.MenuItem({ label: 'Eric' }));
+    submenu.append(new nw.MenuItem({ label: 'Corinne' }));
+    submenu.append(new nw.MenuItem({ label: 'Agnès' }));
+    submenu.append(new nw.MenuItem({ label: 'Hina' }));
 
+    // Create and append the 1st level menu to the menubar
+    this.menu.append(new nw.MenuItem({
+        label: 'Famille',
+        submenu: submenu
+      }));
+    nw.Window.get().menu = this.menu;
+  }
   
   // ==== Getter / Setter ==== \\
 
   private set menu (m : nw.Menu) {
     this._menu = m ;
-    this.setSubMenu() ;
   }
 
   private get menu () : nw.Menu {
