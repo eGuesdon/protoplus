@@ -20,7 +20,9 @@ export class RootComponent {
     // Create an empty menubar
     this.menu = new nw.Menu({type:"menubar"});
     // Needs to be define for MacOS
-    this.menu.createMacBuiltin("Proto+", { hideWindow : true , hideEdit : true } ) ;
+    // add - { hideWindow : true , hideEdit : true } - to remove Edit and Window menu entries
+    // how to replace nwjs and replace it by the my-app-name : have a look at http://docs.nwjs.io/en/latest/For%20Users/Advanced/Customize%20Menubar/#mac-os-x
+    this.menu.createMacBuiltin("Proto+" ) ;
 
     // Create a submenu as the 2nd level menu
     var submenu : nw.Menu = new nw.Menu();
@@ -53,7 +55,6 @@ export class RootComponent {
     nw.Window.get().menu = this.menu;
     nw.Window.get().moveBy(0, -200);
     nw.Window.get().showDevTools();
-    console.log(nw.Window.get) ;
   }
   
   // ==== Getter / Setter ==== \\
