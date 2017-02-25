@@ -1,5 +1,7 @@
+/// <reference path="../../../../typings/globals/nw.js/index.d.ts" />
+
 import { Component } from '@angular/core';
-declare let nw: any;
+declare let nw ;
 
 @Component({
   selector: 'body',
@@ -7,19 +9,35 @@ declare let nw: any;
   styleUrls: ['./styles.css']
 })
 export class RootComponent {
-  welcomeMsg : string = 'Bienvenu sur Proto';
-  welcomeMsgPlus : string = '+' ;
-  menu : Menu;
+  public welcomeMsg : string = 'Bienvenu sur Proto';
+  public welcomeMsgPlus : string = '+' ;
+  private _menu : nw.Menu;
 
   constructor() {
     
   }
 
-  public ngOnInit() {
-    this.createMenu();
+  public ngOnInit () : void {
+    this.menu = new nw.Menu( { type : 'menubar' } );
   }
 
-  private createMenu():void {
-
+  private setSubMenu () : void {
+    this.menu.append(new nw.MenuItem( { label : 'Item A' } ) ) ;
+    this.menu.append(new nw.MenuItem( { label : 'Item B' } ) ) ;
+    this.menu.append(new nw.MenuItem( { label : 'Separator' } ) ) ;
+    this.menu.append(new nw.MenuItem( { label : 'Item C' } ) ) ;
   }
+
+  
+  // ==== Getter / Setter ==== \\
+
+  private set menu (m : nw.Menu) {
+    this._menu = m ;
+    this.setSubMenu() ;
+  }
+
+  private get menu () : nw.Menu {
+    return this._menu ;
+  }
+  
 }
