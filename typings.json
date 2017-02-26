@@ -1,5 +1,0 @@
-{
-  "globalDependencies": {
-    "nw.js": "registry:dt/nw.js#0.13.0+20161229235626"
-  }
-}

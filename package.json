@@ -10,9 +10,9 @@
     "pree2e": "webdriver-manager update --standalone false --gecko false",
     "e2e": "protractor",
     "desktop": "nw",
-    "desktop-debug": "nodemon debug.js"
+    "desktop-debug": "ng build --base-href /dist/ --watch true"
   },
-  "main": "nw.html",
+  "main": "dist/index.html",
   "window": {
     "title": "Proto+",
     "width": 1024,
@@ -34,24 +34,40 @@
     "zone.js": "0.7.7"
   },
   "devDependencies": {
+    "@angular/cli": "^1.0.0-beta.32.3",
     "@angular/compiler-cli": "2.4.8",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.28.3",
+    "@types/nw.js": "^0.13.6",
     "codelyzer": "~2.0.0-beta.1",
+    "css-loader": "^0.26.1",
+    "exports-loader": "^0.6.3",
+    "file-loader": "^0.10.0",
+    "istanbul-instrumenter-loader": "^2.0.0",
+    "james-browser-launcher": "1.2.6",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
+    "json-loader": "^0.5.4",
     "karma": "1.2.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
-    "nodemon": "1.11.0",
-    "nw": "0.20.2-sdk",
+    "karma-sourcemap-loader": "^0.3.7",
+    "less-loader": "^2.2.3",
+    "nw": "0.20.3-sdk",
+    "postcss-loader": "^0.13.0",
     "protractor": "~4.0.13",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^4.1.1",
+    "script-loader": "^0.7.0",
+    "source-map-loader": "^0.1.5",
+    "style-loader": "^0.13.1",
+    "stylus-loader": "^2.4.0",
     "ts-node": "1.2.1",
     "tslint": "4.4.2",
     "typescript": "2.1.5",
-    "typings": "^2.1.0"
+    "url-loader": "^0.5.7",
+    "webpack-dev-server": "~2.3.0"
   }
 }
