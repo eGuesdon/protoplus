@@ -20,7 +20,14 @@ export class RootComponent {
     // Needs to be define for MacOS
     // add - { hideWindow : true , hideEdit : true } - to remove Edit and Window menu entries
     // how to replace nwjs and replace it by the my-app-name : have a look at http://docs.nwjs.io/en/latest/For%20Users/Advanced/Customize%20Menubar/#mac-os-x
-    if (process.platform === "darwin") {
+    
+    for (var i in process){
+      console.log(i + " " + process[i]);
+    }
+
+    console.log(process.platform) ;
+    
+    if (process.platform == "darwin") {
       this.menu.createMacBuiltin("Proto+");
     }
 
@@ -41,6 +48,8 @@ export class RootComponent {
     var sssubmenu: nw.Menu = new nw.Menu();
     sssubmenu.append(new nw.MenuItem({ label: 'Corinne' }));
     sssubmenu.append(new nw.MenuItem({ label: 'Eric' }));
+    sssubmenu.append(new nw.MenuItem({ label: 'Agnès' }));
+    sssubmenu.append(new nw.MenuItem({ label: 'Hina' }));
 
     submenu.append(new nw.MenuItem({
       label: 'Famille Guesdon',
