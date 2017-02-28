@@ -9,23 +9,28 @@ export class Container extends UIComponent {
     public static RESIZE_ALLDIRECTION : string = "allDirection" ;
 
     // Private
-    private _resizable : boolean = true ;
+    private _resizable : boolean = false ;
     private _resizableDirection : string = Container.RESIZE_ALLDIRECTION ;
     // indicate if the container is either draggable
-    private _isDraggable : boolean = true ;
+    private _isDraggable : boolean = false ;
     // indicate if the container is either collasable
-    private _isCollapsable : boolean = true ;
+    private _isCollapsable : boolean = false ;
     // indicate if the container is either Closable 
-    private _isClosable : boolean = true ;
+    private _isClosable : boolean = false ;
     // indicate if the container is stickable
-    private _isStickable : boolean = true ;
+    private _isStickable : boolean = false ;
     // represents the core Container 
     private _container : HTMLDivElement ;
     // represents the id of the container
     private _containerID : string = "coreContainer" ;
+    // represents the parent container. The one within container is displayed
+    private _parent : HTMLElement ;
 
-    constructor () {
+    constructor ( id : string, parent : HTMLElement ) {
         super() ;
+
+        this.containerID = id ;
+        this.parent = parent ;
     }
 
     /**
@@ -34,7 +39,6 @@ export class Container extends UIComponent {
      */
     protected init () : void {
         super.init() ;
-        console.log ("je suis dans init de Container") ;
         this.buildContainer () ;
     }
 
@@ -54,10 +58,18 @@ export class Container extends UIComponent {
         }
     }
 
+    /**
+     * 
+     */
+     public display () : void {
+         this.parent.appendChild ( this.container ) ;
+     }
+
     // === Private method === \\
 
     private buildContainer () : void {
         this.container = document.createElement("div");
+        console.log (this.container) ;
         this.setContainerID () ;
     }
 
@@ -144,5 +156,15 @@ export class Container extends UIComponent {
 
     public get containerID () : string {
         return this._containerID ;
+    }
+
+    public set parent ( value : HTMLElement ) {
+        if ( !this._parent ) {
+            this._parent = value ;
+        }
+    }
+
+    public get parent () : HTMLElement {
+        return this._parent ;
     }
 }

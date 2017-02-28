@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Panel } from '../../UIComponents/Panel/Panel' ;
 
 @Component({
   selector: 'body',
@@ -9,10 +10,9 @@ export class RootComponent {
   public welcomeMsg: string = 'Bienvenu sur Proto';
   public welcomeMsgPlus: string = '+';
   private _menu: nw.Menu;
+  private _panel : Panel ;
 
-  constructor() {
-
-  }
+  constructor() {}
 
   public ngOnInit(): void {
     // Create an empty menubar
@@ -21,14 +21,9 @@ export class RootComponent {
     // add - { hideWindow : true , hideEdit : true } - to remove Edit and Window menu entries
     // how to replace nwjs and replace it by the my-app-name : have a look at http://docs.nwjs.io/en/latest/For%20Users/Advanced/Customize%20Menubar/#mac-os-x
     
-    for (var i in process){
-      console.log(i + " " + process[i]);
-    }
-
-    console.log(process.platform) ;
     
-    if (process.platform == "darwin") {
-      this.menu.createMacBuiltin("Proto+");
+    this.menu.createMacBuiltin("Proto+");
+    if (process.platform === "darwin") {
     }
 
     // Create a submenu as the 2nd level menu
@@ -64,6 +59,11 @@ export class RootComponent {
     nw.Window.get().menu = this.menu;
     nw.Window.get().moveBy(0, -200);
     nw.Window.get().showDevTools();
+
+    // ========== \\
+
+    this._panel = new Panel("panel", document.body) ;
+    this._panel.display();
   }
 
   // ==== Getter / Setter ==== \\
