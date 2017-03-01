@@ -19,11 +19,8 @@ export class LayoutManager {
     // === Public methods === \\
 
     public init () : void {
-        this.buildMainContainer () ;
-        this.buildLeftContainer () ;
-        this.buildRightContainer () ;
-        this.buildTopContainer () ;
-        this.buildWorkspaceContainer () ;
+        this.buildLayout () ;
+        this.displayLayout () ;
     }
 
     public displayMainContainer () : void {
@@ -47,6 +44,22 @@ export class LayoutManager {
     }
 
     // === Private methods === \\
+
+    private buildLayout () : void {
+        this.buildMainContainer () ;
+        this.buildLeftContainer () ;
+        this.buildRightContainer () ;
+        this.buildTopContainer () ;
+        this.buildWorkspaceContainer () ;
+    }
+
+    private displayLayout () : void {
+        this.mainContainer.display () ;
+        this.topContainer.display () ;
+        this.leftContainer.display () ;
+        this.workspaceContainer.display() ;
+        this.rightContainer.display ();
+    }
 
     private buildMainContainer () : void {
         this.mainContainer = new MainContainer ("main", document.body);

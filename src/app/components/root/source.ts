@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Panel } from '../../UIComponents/Panel/Panel' ;
+import { LayoutManager } from "../../Layout/LayoutManager" ;
 
 @Component({
   selector: 'body',
@@ -11,6 +12,7 @@ export class RootComponent {
   public welcomeMsgPlus: string = '+';
   private _menu: nw.Menu;
   private _panel : Panel ;
+  private _layout : LayoutManager ;
 
   constructor() {}
 
@@ -62,7 +64,10 @@ export class RootComponent {
 
     // ========== \\
 
-    this._panel = new Panel("panel", document.body) ;
+    this._layout = new LayoutManager () ;
+
+
+    this._panel = new Panel("panel", this._layout.leftContainer.container) ;
     this._panel.display();
   }
 
