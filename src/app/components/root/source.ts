@@ -8,8 +8,6 @@ import { LayoutManager } from "../../Layout/LayoutManager" ;
   styleUrls: ['./styles.css']
 })
 export class RootComponent {
-  public welcomeMsg: string = 'Bienvenu sur Proto';
-  public welcomeMsgPlus: string = '+';
   private _menu: nw.Menu;
   private _panel : Panel ;
   private _layout : LayoutManager ;
@@ -18,19 +16,20 @@ export class RootComponent {
 
   public ngOnInit(): void {
     // Create an empty menubar
-    this.menu = new nw.Menu({ type: "menubar" });
+    this.menu = new nw.Menu({ type: "menubar"});
     // Needs to be define for MacOS
     // add - { hideWindow : true , hideEdit : true } - to remove Edit and Window menu entries
     // how to replace nwjs and replace it by the my-app-name : have a look at http://docs.nwjs.io/en/latest/For%20Users/Advanced/Customize%20Menubar/#mac-os-x
     
+    this.menu.createMacBuiltin("Proto+", {hideEdit: true, hideWindow:true});
     
-    this.menu.createMacBuiltin("Proto+");
+    
     if (process.platform === "darwin") {
     }
 
     // Create a submenu as the 2nd level menu
     var submenu: nw.Menu = new nw.Menu();
-
+    
     var ssubmenu: nw.Menu = new nw.Menu();
     ssubmenu.append(new nw.MenuItem({ label: 'Noelle' }));
     ssubmenu.append(new nw.MenuItem({ label: 'Ugo' }));
@@ -39,14 +38,15 @@ export class RootComponent {
       label: 'Famille Parlange',
       submenu: ssubmenu
     }));
+    
 
     submenu.append(new nw.MenuItem({ type: 'separator' }));
 
     var sssubmenu: nw.Menu = new nw.Menu();
     sssubmenu.append(new nw.MenuItem({ label: 'Corinne' }));
-    sssubmenu.append(new nw.MenuItem({ label: 'Eric' }));
     sssubmenu.append(new nw.MenuItem({ label: 'Agnès' }));
     sssubmenu.append(new nw.MenuItem({ label: 'Hina' }));
+    sssubmenu.append(new nw.MenuItem({ label: 'Eric' }));
 
     submenu.append(new nw.MenuItem({
       label: 'Famille Guesdon',
